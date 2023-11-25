@@ -135,9 +135,6 @@ class GuaGame {
         // 开始运行程序
         g.runloop()
 
-        // setTimeout(function () {
-        //     g.runloop()
-        // }, 1000 / window.fps)
     }
     replaceScene(scene) {
         // TODO: 这里应该想办法 保存场景, 但是key要怎么办
@@ -151,12 +148,6 @@ class GuaGame {
 
     init() {
         let g = this
-        // 预先加载所有场景
-        // let sceneTitle = SceneTitle.new(g)
-        // let sceneEnd = SceneEnd.new(g)
-
-        // this.sceneList["SceneTitle"] = sceneTitle
-        // this.sceneList["SceneEnd"] = sceneEnd
 
         let loads = []
         // 预先载入所有图片

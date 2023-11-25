@@ -16,6 +16,18 @@ let enableDebugMode = function (game, enable) {
         let input = event.target
         window.fps = Number(input.value)
     })
+
+    document.querySelector('#id-input-auto-eat').addEventListener('change', function (event) {
+        const checked = this.checked
+        config.autoEat = checked
+        if (checked) {
+            console.log("Checkbox is checked..", checked);
+        } else {
+            console.log("Checkbox is not checked..", checked);
+        }
+    })
+
+
     game.canvas.addEventListener('click', function (event) {
         let x = event.offsetX
         let y = event.offsetY
@@ -29,7 +41,7 @@ let __main = function () {
         gun: 'img/gun2.png',
         enemy: 'img/e2.png',
     }
-    let game = GuaGame.instance(60, images, function (g) {
+    let game = GuaGame.instance(30, images, function (g) {
         let s = MainScene.new(g)
         // let s = SceneTitle.new(g)
         g.runWithScene(s)

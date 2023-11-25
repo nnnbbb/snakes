@@ -14,7 +14,11 @@
     <body>
         <canvas id="id-canvas" width="600" height="400"></canvas>
         <hr />
-        <input id="id-input-speed" type="range" value="1" />
+        <button onclick="window.location.reload()">重新开始</button>
+        <input id="id-input-auto-eat" type="checkbox" checked />自动吃
+        <input id="id-input-speed" type="range" value="1" />速度
+
+
         <div class="gua-controls">
             <!-- <textarea id="id-text-log" rows="20" cols="50"></textarea> -->
         </div>
@@ -33,6 +37,10 @@
     <script src="scene/title/scene.js"></script>
     <script src="scene/main/main_scene.js"></script>
     <script src="scene/main/enemy.js"></script>
+    <script src="scene/main/grid.js"></script>
+    <script src="scene/main/snake.js"></script>
+    <script src="scene/main/food.js"></script>
+    <script src="scene/main/astar.js"></script>
 
     <script src="main.js"></script>
 
