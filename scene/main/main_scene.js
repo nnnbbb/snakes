@@ -19,11 +19,6 @@ class MainScene extends GuaScene {
 
         this.generateFood()
 
-        let result = this.pathFinding()
-        this.finding = result
-
-    }
-    pathFinding() {
         let gridIn = []
         for (let x = 0; x < this.grid.col; x++) {
             let ya = []
@@ -38,14 +33,21 @@ class MainScene extends GuaScene {
             }
             gridIn.push(ya)
         }
+        this.graph = new Graph(gridIn)
+
+        this.finding = this.pathFinding()
+
+    }
+    pathFinding() {
+        this.graph.setNodeWeight(this.snake.body)
         let [sx, sy] = this.snake.body[0]
         let fx = this.food.x
         let fy = this.food.y
-        this.graph = new Graph(gridIn)
         const graphGrid = this.graph.grid
         const start = graphGrid[sx][sy]
         const end = graphGrid[fx][fy]
-        let result = astar.search(this.graph, start, end, { closest: true })
+        const result = astar.search(this.graph, start, end, { closest: true })
+        this.finding = result
         return result
     }
 
@@ -139,20 +141,22 @@ class MainScene extends GuaScene {
     }
 
     autoEating(sx, sy) {
-        let px = this.finding[0].x
-        let py = this.finding[0].y
-        if (px === sx && py === sy) {
-            this.finding.pop(0)
+        let findingX = this.finding[0].x
+        let findingY = this.finding[0].y
+        if (findingX === sx && findingY === sy) {
+            this.finding.shift()
+            findingX = this.finding[0].x
+            findingY = this.finding[0].y
         }
-        if (px > sx) {
+
+        if (findingX > sx) {
             this.snake.changeDirection('R')
-        } else if (px < sx) {
+        } else if (findingX < sx) {
             this.snake.changeDirection('L')
-        } else if (py > sy) {
+        } else if (findingY > sy) {
             this.snake.changeDirection('D')
-        } else if (py < sy) {
+        } else if (findingY < sy) {
             this.snake.changeDirection('U')
         }
-        this.finding = this.pathFinding()
     }
 }

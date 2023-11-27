@@ -137,9 +137,6 @@ class GuaGame {
 
     }
     replaceScene(scene) {
-        // TODO: 这里应该想办法 保存场景, 但是key要怎么办
-
-        // let s = this.scene
         this.scene = scene
     }
     __start() {

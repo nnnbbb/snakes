@@ -171,6 +171,23 @@
         this.init();
     }
 
+    Graph.prototype.resetNode = function () {
+        for (var i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].weight = 1
+        }
+    };
+
+    Graph.prototype.setNodeWeight = function (nodes) {
+        this.resetNode()
+        for (var i = 0; i < this.nodes.length; i++) {
+            let node = this.nodes[i]
+            let find = nodes.find(([x, y]) => x === node.x && y === node.y)
+            if (find) {
+                this.nodes[i].weight = 0
+            }
+        }
+    };
+
     Graph.prototype.init = function () {
         this.dirtyNodes = [];
         for (var i = 0; i < this.nodes.length; i++) {

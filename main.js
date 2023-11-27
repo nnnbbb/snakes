@@ -10,6 +10,9 @@ let enableDebugMode = function (game, enable) {
             // 暂停功能
             window.paused = !window.paused
         }
+        if (k ==='ArrowRight'){
+            game.runloop()
+        }
     })
     // 控制速度
     document.querySelector('#id-input-speed').addEventListener('input', function (event) {
